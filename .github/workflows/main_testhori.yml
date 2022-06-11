@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://testhori.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_0fac546785b14d8996f96ad85148a55c }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_cc7c3477628145df982945e396fff841 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_a43a1756dd25457a8aa2bcce5dcbc75c }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_4d105f42f04149d8bed353068db02bd9 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: testhori.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0fac546785b14d8996f96ad85148a55c }}/original_alpine_nginx:${{ github.sha }}
+        tags: testhori.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a43a1756dd25457a8aa2bcce5dcbc75c }}/testhori/original_alpine_nginx:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'testhori'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e6274a9f96734909a1a8b42acbddaa83 }}
-        images: 'testhori.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0fac546785b14d8996f96ad85148a55c }}/original_alpine_nginx:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f5947da8a824086a3803622673c1216 }}
+        images: 'testhori.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a43a1756dd25457a8aa2bcce5dcbc75c }}/testhori/original_alpine_nginx:${{ github.sha }}'
